@@ -125,7 +125,8 @@ class SoapBinding(Binding):
 
         # If the client wants to return the raw data then let's do that.
         if client.settings.raw_response:
-            return response
+            return (
+                response, self.process_reply(client, operation_obj, response))
 
         return self.process_reply(client, operation_obj, response)
 
